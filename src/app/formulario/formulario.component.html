@@ -1,1 +1,72 @@
-<p>formulario works!</p>
+<div class="Container-title-dialog">
+    <h1 class="title">Crear Usuario</h1>
+</div>
+<div class="Content-Modifed">
+
+    <form (ngSubmit)="eventForm()" #myForm="ngForm" class="example-form">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre </mat-label>
+            <input matInput placeholder="Manuel" name="name" required id="nameProduct"
+                [(ngModel)]="user.nombre">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="1.00" name="Apellido" required id="Apellido" [(ngModel)]="user.apellido">
+        </mat-form-field>
+
+      
+
+        <mat-form-field class="example-full-width">
+            <mat-label>documento</mat-label>
+            <input matInput placeholder="" name="documento" required id="documento" [(ngModel)]="user.documento">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="" name="correo" required id="correo" [(ngModel)]="user.correo">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Genero</mat-label>
+            <input matInput placeholder="" name="Genero" required id="Genero" [(ngModel)]="user.genero">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>edad</mat-label>
+            <input matInput placeholder="" name="edad" required id="edad" [(ngModel)]="user.edad">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>pasatiempo</mat-label>
+            <input matInput placeholder="" name="pasatiempo" required id="pasatiempo" [(ngModel)]="user.pasatiempo">
+        </mat-form-field>
+
+
+
+
+     
+
+
+
+
+<!-- 
+        <mat-form-field class="example-full-width">
+            <mat-label> Selecione Categoria </mat-label>
+            <mat-select [(value)]="cProduct.idCategory">
+                <mat-option>Selecione Categoria </mat-option>
+                <mat-option *ngFor="let Category  of   ListCategory "
+                    [value]="Category.idCategory">{{Category.nameCategory}}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+
+
+
+        <button  [disabled]="myForm.invalid" type="submit" class="send-product"> Crear </button>
+
+    </form>
+
+</div>
+
