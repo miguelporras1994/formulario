@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { User } from '../Models/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,13 @@ export class UserServiceService {
 
   saveData( user : User) {
     
-
+  
       localStorage.setItem("user", JSON.stringify(user));
-    
-     return true;
+      const myObservable: Observable<number> = new Observable<number>((observer) => {
+        observer.next(1);
+        observer.complete();
+      });
+     return myObservable;
   }
 
 

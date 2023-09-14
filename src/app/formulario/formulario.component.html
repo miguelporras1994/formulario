@@ -3,70 +3,79 @@
 </div>
 <div class="Content-Modifed">
 
-    <form (ngSubmit)="eventForm()" #myForm="ngForm" class="example-form">
+    <form   [formGroup]="Form" (ngSubmit)="eventForm()" #myForm="ngForm" class="example-form"  >
 
         <mat-form-field class="example-full-width">
             <mat-label>Nombre </mat-label>
-            <input matInput placeholder="Manuel" name="name" required id="nameProduct"
+            <input matInput placeholder="name" name="name"   formControlName="name" required id="nameProduct" 
                 [(ngModel)]="user.nombre">
+
+               <mat-error *ngIf="name?.errors?.['required']">Campo Nombre requerido</mat-error>
+               <mat-error *ngIf="name?.errors?.['minlength']">Minimo son letras 3</mat-error>
+       
+
+               
         </mat-form-field>
+
 
         <mat-form-field class="example-full-width">
             <mat-label>Apellido</mat-label>
-            <input matInput placeholder="1.00" name="Apellido" required id="Apellido" [(ngModel)]="user.apellido">
+            <input matInput placeholder="Ramirez" name="Apellido" required id="Apellido"  formControlName="LastName" [(ngModel)]="user.apellido">
+            <mat-error *ngIf="LastName?.errors?.['required']">Campo Apellido requerido</mat-error>
+            <mat-error *ngIf="LastName?.errors?.['minlength']">Minimo son letras 3</mat-error>
         </mat-form-field>
 
       
 
         <mat-form-field class="example-full-width">
             <mat-label>documento</mat-label>
-            <input matInput placeholder="" name="documento" required id="documento" [(ngModel)]="user.documento">
+            <input matInput placeholder="" name="documento" required id="documento" formControlName="Id"  [(ngModel)]="user.documento">
+            <mat-error *ngIf="Id?.errors?.['required']">Campo documento requerido</mat-error>
+            <mat-error *ngIf="Id?.errors?.['minlength']">Minimo son carateres  10</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Correo</mat-label>
-            <input matInput placeholder="" name="correo" required id="correo" [(ngModel)]="user.correo">
+            <input matInput placeholder="" name="email" formControlName="email" required id="email" [(ngModel)]="user.correo">
+            <mat-error *ngIf="email?.errors?.['required']">Campo correo requerido</mat-error>
+              <mat-error *ngIf="email?.hasError('email')">Email no es válido</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <mat-label>Genero</mat-label>
-            <input matInput placeholder="" name="Genero" required id="Genero" [(ngModel)]="user.genero">
-        </mat-form-field>
+            <mat-label> Selecione Genero </mat-label>
+            <mat-select [(value)]="user.genero" formControlName="Genero">
+                <mat-option>Selecione Genero </mat-option>
+                <mat-option *ngFor="let Genero  of   ListGenero "
+                    [value]="Genero.Name">{{Genero.Name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="Genero?.errors?.['required']">Genero Requerido</mat-error>
+        </mat-form-field> 
+
 
         <mat-form-field class="example-full-width">
             <mat-label>edad</mat-label>
-            <input matInput placeholder="" name="edad" required id="edad" [(ngModel)]="user.edad">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>pasatiempo</mat-label>
-            <input matInput placeholder="" name="pasatiempo" required id="pasatiempo" [(ngModel)]="user.pasatiempo">
-        </mat-form-field>
+            <input matInput placeholder="" name="edad" required id="edad" formControlName="old" [(ngModel)]="user.edad">
+            <mat-error *ngIf="old?.errors?.['required']">Campo documento requerido</mat-error>
+        </mat-form-field> 
 
 
-
-
-     
-
-
-
-
-<!-- 
-        <mat-form-field class="example-full-width">
-            <mat-label> Selecione Categoria </mat-label>
-            <mat-select [(value)]="cProduct.idCategory">
-                <mat-option>Selecione Categoria </mat-option>
-                <mat-option *ngFor="let Category  of   ListCategory "
-                    [value]="Category.idCategory">{{Category.nameCategory}}</mat-option>
-            </mat-select>
-        </mat-form-field> -->
-
-
-
+      <label id="example-radio-group-label">pasatiempo</label>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="user.pasatiempo"
+  formControlName="hobby">
+  <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+    {{season}}
+  </mat-radio-button>
+</mat-radio-group>
 
         <button  [disabled]="myForm.invalid" type="submit" class="send-product"> Crear </button>
 
     </form>
 
 </div>
+
+
+
 
